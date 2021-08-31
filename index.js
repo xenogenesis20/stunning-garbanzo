@@ -10,7 +10,6 @@ const typeDefs = gql`
   type Query {
     countries: [Country]
   }
-
 `;
 
 const countries = [
@@ -46,6 +45,7 @@ const resolvers = {
     Query: {
       countries: () => countries,
     },
+
   };
 
   // The ApolloServer constructor requires two parameters: your schema
