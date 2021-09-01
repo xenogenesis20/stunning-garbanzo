@@ -10,12 +10,18 @@ const typeDefs = gql`
   type Query {
     countries: [Country]
   }
+<<<<<<< HEAD
   type Mutation {
     addCountry(country: String, year: Int, areaSquareKilometres: Int, totalPopulation: Int): Country
   }
 `;
 
 let countries = [
+=======
+`;
+
+const countries = [
+>>>>>>> 78df68d260b9f9ae9016f18cd580d9706b876d8c
    {
       country: "Albania",
       year: 2000,
@@ -41,6 +47,7 @@ let countries = [
       totalPopulation: 3111162
    }
 ]
+<<<<<<< HEAD
 const resolvers = {
     Query: {
       countries: (parent,args,context,info) => countries,
@@ -51,6 +58,23 @@ const resolvers = {
   };
 const server = new ApolloServer({ typeDefs, resolvers });
 
+=======
+
+  // Resolvers define the technique for fetching the types defined in the
+// schema. This resolver retrieves books from the "books" array above.
+const resolvers = {
+    Query: {
+      countries: () => countries,
+    },
+
+  };
+
+  // The ApolloServer constructor requires two parameters: your schema
+// definition and your set of resolvers.
+const server = new ApolloServer({ typeDefs, resolvers });
+
+// The `listen` method launches a web server.
+>>>>>>> 78df68d260b9f9ae9016f18cd580d9706b876d8c
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
