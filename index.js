@@ -11,7 +11,7 @@ const typeDefs = gql`
     countries: [Country]
   }
   type Mutation {
-    addCountry(country: String, year: Int, areaSquareKilometres: Int, totalPopulation: Int): Country
+    addCountry(country: String, year: Int, areaSquareKilometres: Int, totalPopulation: Int): [Country]
   }
 `;
 
@@ -43,10 +43,24 @@ let countries = [
 ]
 const resolvers = {
     Query: {
-      countries: (parent,args,context,info) => countries,
+      countries: (parent,args,context,info) => {
+        // console.log("Query information");
+        // console.log("parent",parent);
+        // console.log("context",context);
+        // console.log("info",info);
+        // console.log("args",args);
+        return countries
+      }
     },
     Mutation:{
-      addCountry: (parent,args,context,info) => args,
+      addCountry: (parent,args,context,info) =>{
+        // console.log("Mutation information");
+        // console.log("info",info);
+        // console.log("args",args);
+        countries.push(args)
+        console.log(countries);
+        return countries
+      }
     }
   };
 const server = new ApolloServer({ typeDefs, resolvers });
